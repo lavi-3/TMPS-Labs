@@ -1,8 +1,8 @@
-# Author: Cozlov Valeria
+# Topic: *SOLID PRINCIPLES*
+### Author: Cozlov Valeria
 
 ----
 
-# Topic: *SOLID PRINCIPLES*
 ## Objectives:
 
 
