@@ -24,6 +24,8 @@ bin/
 
 ### VS Code ###
 .vscode/
+.idea/
+patterns.iml
 
 ### Mac OS ###
 .DS_Store
