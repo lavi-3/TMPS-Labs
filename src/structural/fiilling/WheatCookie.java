@@ -1,12 +1,11 @@
-package structural.hen_food;
+package structural.fiilling;
 
-public class Grain extends HenFeedType {
-    public Grain(HenFeed c, int price) {
+public class WheatCookie extends CookieType {
+    private int price;
+    public WheatCookie(Sweets c, int price) {
         super(c);
         this.price = price;
     }
-
-    private int price;
 
     public int getPrice() {
         return price;
@@ -18,7 +17,7 @@ public class Grain extends HenFeedType {
 
     @Override
     public int additionPrice() {
-        return henFeed.additionPrice() + price;
+        return sweets.additionPrice() + price;
     }
 
 }

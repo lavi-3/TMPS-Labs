@@ -1,52 +1,52 @@
 package structural;
 
-import structural.adapter.Hen;
-import structural.adapter.HenActions;
-import structural.adapter.PigAdapter;
-import structural.hen_food.*;
-import structural.pig.FatPig;
-import structural.pig.MeatPig;
-import structural.pig.NormalPig;
-import structural.pig.Pig;
-import structural.pig_food.CornGruel;
-import structural.pig_food.Gruel;
-import structural.pig_food.GruelFeed;
-import structural.pig_food.WheatGruel;
+import structural.adapter.Cookie;
+import structural.adapter.CookieProprieties;
+import structural.adapter.IceCreamAdapter;
+import structural.fiilling.*;
+import structural.ice_cream.Caramel;
+import structural.ice_cream.Fruits;
+import structural.ice_cream.IceCream;
+import structural.ice_cream.WhiteIceCream;
+import structural.glasure.ChocolateGlasure;
+import structural.glasure.Glasure;
+import structural.glasure.GlasureTaste;
+import structural.glasure.MarmeladGlasure;
 
 public class Main {
     public static void main(String[] args) {
         //Bridge
-        HenFeedType henFeedType = new Grain(new DirtFeed(), 100);
-        henFeedType.additionPrice();
+        CookieType cookieType = new CornCookie(new WhiteChocolate(), 100);
+        cookieType.additionPrice();
 
-        HenFeedType henFeedType1 = new Corn(new ClearFeed(), 200);
-        henFeedType1.additionPrice();
+        CookieType cookieType1 = new WheatCookie(new DarkChocolate(), 200);
+        cookieType1.additionPrice();
 
         //Composite
-        Gruel cornGruel = new CornGruel();
-        Gruel cornGruel1 = new CornGruel();
-        Gruel wheatGruel = new WheatGruel();
-        GruelFeed gruelFeed = new GruelFeed(100);
-        gruelFeed.add(cornGruel1);
-        gruelFeed.add(cornGruel1);
-        gruelFeed.add(wheatGruel);
-        gruelFeed.showGruel(50);
-        gruelFeed.clear();
-        gruelFeed.add(cornGruel);
-        gruelFeed.add(wheatGruel);
-        gruelFeed.showGruel(20);
+        GlasureTaste marmeladGlasure = new MarmeladGlasure();
+        GlasureTaste marmeladGlasure1 = new MarmeladGlasure();
+        GlasureTaste chocolateGlasure = new ChocolateGlasure();
+        Glasure glasure = new Glasure(100);
+        glasure.add(marmeladGlasure1);
+        glasure.add(marmeladGlasure1);
+        glasure.add(chocolateGlasure);
+        glasure.showGlasure();
+        glasure.clear();
+        glasure.add(marmeladGlasure);
+        glasure.add(chocolateGlasure);
+        glasure.showGlasure();
 
 //        Decorator
-        Pig meatPig = new MeatPig(new NormalPig("Vasile", 100, gruelFeed), 10);
-        System.out.println(meatPig.finalPrice());
+        IceCream iceCream = new Caramel(new WhiteIceCream("Joc", 100, glasure), 10);
+        System.out.println(iceCream.finalPrice());
 
-        Pig meatPig1 = new MeatPig(new FatPig(new NormalPig("Jora", 120, gruelFeed), 30), 20);
-        System.out.println(meatPig1.finalPrice());
+        IceCream caramel = new Caramel(new Fruits(new WhiteIceCream("Plombir", 120, glasure), 30), 20);
+        System.out.println(caramel.finalPrice());
 
 //        Adapter
-        HenActions henActions = new Hen(henFeedType1, 100);
-        HenActions pigAdapter = new PigAdapter(meatPig);
-        System.out.println(henActions.displayFinalPrice());
-        pigAdapter.fly();
+        CookieProprieties cookieProprieties = new Cookie(cookieType1, 100);
+        CookieProprieties iceCreamAdapter = new IceCreamAdapter(iceCream);
+        System.out.println(cookieProprieties.displayFinalPrice());
+        System.out.println(iceCreamAdapter.taste());
     }
 }

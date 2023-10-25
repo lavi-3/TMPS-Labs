@@ -42,6 +42,7 @@ public class Teacher implements Cloneable {
     public int getSalary() {
         return salary;
     }
+    // prototype
 // o functie cu care initializam obiectul, creand o copie, copiind elementele din clasa initiala.
     @Override
     public Object clone() {
@@ -56,7 +57,7 @@ public class Teacher implements Cloneable {
                 .setFullName(tempFullName)
                 .build();
     }
-
+//builder
     public static class TeacherBuilder { // obiectul constructorului de baza
         private List<String> schoolTeaches;
         private String fullName;

@@ -28,27 +28,27 @@
 * Introduction
 
 I decided to implement Adapter, Bridge, Composite and Decorator design patterns.
-I created a java program where there is are Pigs and Hens and they have food represented in different types, then we adapt pig to hen.
+I created a java program where there is ice-cream and cookies and they have components represented in different types, then we adapt iceCream taste to cookie taste.
 
 * Snippets from your files.
 
 * Adapter:
 
 ```java
-public class PigAdapter implements HenActions {
-    Pig pig;
-    public PigAdapter(Pig pig) {
-        this.pig = pig;
+public class IceCreamAdapter implements CookieProprieties {
+    IceCream iceCream;
+    public IceCreamAdapter(IceCream iceCream) {
+        this.iceCream = iceCream;
     }
 
-    public void fly()
-    {
-        pig.run();
+    @Override
+    public String taste() {
+        return iceCream.taste();
     }
 
     @Override
     public int displayFinalPrice() {
-        return pig.finalPrice();
+        return iceCream.finalPrice();
     }
 }
 ```
@@ -56,11 +56,11 @@ public class PigAdapter implements HenActions {
 * Bridge:
 
 ```java
-public abstract class HenFeedType {
-    protected HenFeed henFeed;
+public abstract class CookieType {
+    protected Sweets sweets;
 
-    public HenFeedType(HenFeed henFeed){
-        this.henFeed = henFeed;
+    public CookieType(Sweets sweets){
+        this.sweets = sweets;
     }
 
     abstract public int additionPrice();
@@ -70,32 +70,32 @@ public abstract class HenFeedType {
 * Composite:
 
 ```java
-public class GruelFeed {
+public class Glasure {
     private int price;
 
-    public GruelFeed(int price) {
+    public Glasure(int price) {
         this.price = price;
     }
 
-    private List<Gruel> gruels = new ArrayList<>();
+    private List<GlasureTaste> glasureTastes = new ArrayList<>();
 
-    public void showGruel(int quantity) {
-        for(Gruel sh : gruels) {
-            sh.eat(quantity);
+    public void showGlasure() {
+        for(GlasureTaste sh : glasureTastes) {
+            sh.eatable();
         }
     }
 
-    public void add(Gruel s){
-        this.gruels.add(s);
+    public void add(GlasureTaste s){
+        this.glasureTastes.add(s);
     }
 
     public int getPrice() {
-        return price * gruels.size();
+        return price * glasureTastes.size();
     }
 
     public void clear(){
-        System.out.println("Clear gruel");
-        this.gruels.clear();
+        System.out.println("Clear glasures");
+        this.glasureTastes.clear();
     }
 }
 ```
@@ -103,67 +103,26 @@ public class GruelFeed {
 * Decorator:
 
 ```java
-public class PigDecorator implements Pig {
-    protected Pig pig;
+public class IceCreamDecorator implements IceCream {
+    protected IceCream iceCream;
 
-    public PigDecorator(Pig c) {
-        this.pig = c;
+    public IceCreamDecorator(IceCream c) {
+        this.iceCream = c;
     }
 
     @Override
-    public void run() {
-        System.out.println("It cam run!");
+    public String taste() {
+        return "Ice cream is tasty!";
     }
 
     @Override
     public int finalPrice() {
-        return this.pig.finalPrice();
+        return this.iceCream.finalPrice();
     }
 
 }
 ```
 
-Main class:
-
-```java
- public class Main {
-    public static void main(String[] args) {
-        //Bridge
-        HenFeedType henFeedType = new Grain(new DirtFeed(), 100);
-        henFeedType.additionPrice();
-
-        HenFeedType henFeedType1 = new Corn(new ClearFeed(), 200);
-        henFeedType1.additionPrice();
-
-        //Composite
-        Gruel cornGruel = new CornGruel();
-        Gruel cornGruel1 = new CornGruel();
-        Gruel wheatGruel = new WheatGruel();
-        GruelFeed gruelFeed = new GruelFeed(100);
-        gruelFeed.add(cornGruel1);
-        gruelFeed.add(cornGruel1);
-        gruelFeed.add(wheatGruel);
-        gruelFeed.showGruel(50);
-        gruelFeed.clear();
-        gruelFeed.add(cornGruel);
-        gruelFeed.add(wheatGruel);
-        gruelFeed.showGruel(20);
-
-//        Decorator
-        Pig meatPig = new MeatPig(new NormalPig("Vasile", 100, gruelFeed), 10);
-        System.out.println(meatPig.finalPrice());
-
-        Pig meatPig1 = new MeatPig(new FatPig(new NormalPig("Jora", 120, gruelFeed), 30), 20);
-        System.out.println(meatPig1.finalPrice());
-
-//        Adapter
-        HenActions henActions = new Hen(henFeedType1, 100);
-        HenActions pigAdapter = new PigAdapter(meatPig);
-        System.out.println(henActions.displayFinalPrice());
-        pigAdapter.fly();
-    }
-}
-```
 ## Conclusion
 To sum up, I have created a simple code that implement the 4 design patterns that I have chosen.
 In my code I managed to implement somehow 4 structural design patterns. Moreover, I managed not only to copy and use them,

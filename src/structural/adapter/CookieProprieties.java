@@ -1,6 +1,6 @@
 package structural.adapter;
 
-public interface HenActions {
-    void fly();
+public interface CookieProprieties {
+    String taste();
     int displayFinalPrice();
 }

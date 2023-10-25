@@ -1,16 +1,16 @@
-package structural.pig;
+package structural.ice_cream;
 
-import structural.pig_food.GruelFeed;
+import structural.glasure.Glasure;
 
-public class NormalPig implements Pig {
+public class WhiteIceCream implements IceCream {
     private String name;
     private int priceForKg;
-    private GruelFeed gruelFeed;
+    private Glasure glasure;
 
-    public NormalPig(String name, int priceForKg, GruelFeed gruelFeed) {
+    public WhiteIceCream(String name, int priceForKg, Glasure glasure) {
         this.name = name;
         this.priceForKg = priceForKg;
-        this.gruelFeed = gruelFeed;
+        this.glasure = glasure;
     }
 
     public String getName() {
@@ -31,11 +31,11 @@ public class NormalPig implements Pig {
 
     @Override
     public int finalPrice() {
-        return getPriceForKg() + gruelFeed.getPrice();
+        return getPriceForKg() + glasure.getPrice();
     }
 
     @Override
-    public void run() {
-        System.out.println("It can run!");
+    public String taste() {
+        return "Tasty Ice Cream!";
     }
 }

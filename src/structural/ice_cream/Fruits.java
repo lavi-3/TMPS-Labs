@@ -1,10 +1,10 @@
-package structural.pig;
+package structural.ice_cream;
 
-public class FatPig extends PigDecorator {
+public class Fruits extends IceCreamDecorator {
 
     private int addPrice;
 
-    public FatPig(Pig c, int addPrice) {
+    public Fruits(IceCream c, int addPrice) {
         super(c);
         this.addPrice = addPrice;
     }
